@@ -1,0 +1,199 @@
+{
+  "entities": [
+    {
+      "name": "Policy",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "policy_name",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "created_date",
+          "type": "date",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "last_updated",
+          "type": "timestamp",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "PolicyDocument",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "document_name",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "nullable": true,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "published_date",
+          "type": "date",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "policy_id",
+          "type": "integer",
+          "nullable": false,
+          "isIndex": true,
+          "isUnique": false
+        }
+      ],
+      "indexes": [
+        {
+          "fields": [
+            "policy_id"
+          ],
+          "unique": false
+        }
+      ],
+      "uniques": []
+    },
+    {
+      "name": "PolicyUser",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "user_name",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "role",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "PolicyAssignment",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "assigned_date",
+          "type": "date",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "nullable": true,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": false,
+          "isUnique": false
+        },
+        {
+          "name": "policy_id",
+          "type": "integer",
+          "nullable": false,
+          "isIndex": true,
+          "isUnique": false
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "isIndex": true,
+          "isUnique": false
+        }
+      ],
+      "indexes": [
+        {
+          "fields": [
+            "policy_id",
+            "user_id"
+          ],
+          "unique": false
+        }
+      ],
+      "uniques": []
+    }
+  ],
+  "relationships": [
+    {
+      "from": "PolicyDocument",
+      "to": "Policy",
+      "type": "ManyToOne"
+    },
+    {
+      "from": "PolicyUser",
+      "to": "Policy",
+      "type": "ManyToOne"
+    },
+    {
+      "from": "PolicyAssignment",
+      "to": "Policy",
+      "type": "ManyToOne"
+    }
+  ],
+  "_removedEntities": []
+}
